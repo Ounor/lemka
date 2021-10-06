@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   catalogContainer: {
     width: '100%',
-    // backgroundColor: '#f1f1f1',
+    backgroundColor: 'rgba(241,241,241,0.81)',
     padding: 16,
   },
   catalogItemContainer: {

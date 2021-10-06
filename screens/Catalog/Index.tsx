@@ -16,7 +16,7 @@ const CatalogContainer = () => {
     const forceUpdate = useCallback(() => updateState({}), []);
 
     const [{data, loading, error}, refetch] = useAxios(
-        'http://lemka.fun/index.php/wp-json/v1/getCategories/',
+        'https://lemka.fun/index.php/wp-json/v1/getCategories/',
         {
             manual: true,
         })
@@ -29,7 +29,8 @@ const CatalogContainer = () => {
         refetch().then(e => {
             const newArr: ((prevState: never[]) => never[]) | { id: any; title: any; }[] = []
             map(e.data, (e: string, index: number) => {
-                newArr.push({id: index, title: e.cat_name, slug: e.slug})
+                // console.log(e)
+                newArr.push({id: e.cat_ID, title: e.cat_name, slug: e.slug})
             })
             setCategoryFilter(newArr)
         })
@@ -50,15 +51,15 @@ const CatalogContainer = () => {
 
     }
 
-    const openRandom = () => {
-        navigation.navigate('Category', selectedCategoryFilter)
+    const openCat = (id) => {
+        navigation.navigate('Category', [id])
     }
 
     const renderItem = ({item: {id, title, slug}}: {
         id: number
         title: string
     }) => {
-        const isContain = selectedCategoryFilter.indexOf(slug) > -1;
+        const isContain = selectedCategoryFilter.indexOf(id) > -1;
         return (
             <TouchableOpacity
                 style={[{
@@ -67,7 +68,7 @@ const CatalogContainer = () => {
                     width: '49%',
                     borderRadius: 30
                 }, isContain && {backgroundColor: 'rgba(255,255,255,0.63)',}]}
-                onPress={() => removeItemOnce(slug)}
+                onPress={() => openCat(id)}
                 key={id}
             >
                 <Text style={[styles.catalogTitle, isContain && {color: '#f1a01f'}]}>
@@ -95,23 +96,10 @@ const CatalogContainer = () => {
                     start={{x: 0, y: 1}}
                     end={{x: 1, y: 0}}
                 >
-                    <TouchableOpacity onPress={openRandom} style={styles.btnContainer}>
-                        <Text style={styles.btnText}>Подобрать</Text>
+                    <TouchableOpacity onPress={() => openCat('')} style={styles.btnContainer}>
+                        <Text style={styles.btnText}>Все игры</Text>
                     </TouchableOpacity>
                 </LinearGradient>
-                {/*<LinearGradient*/}
-                {/*    style={{marginHorizontal: 16, marginBottom: 8, borderRadius: 8}}*/}
-                {/*    colors={['#FFBF19', '#FF9901']}*/}
-                {/*    start={{x: 0, y: 1}}*/}
-                {/*    end={{x: 1, y: 0}}*/}
-                {/*>*/}
-                {/*    <TouchableOpacity*/}
-                {/*        onPress={openRandom}*/}
-                {/*        style={styles.btnContainerSmall}*/}
-                {/*    >*/}
-                {/*        <Text style={styles.btnText}>Мне повезет</Text>*/}
-                {/*    </TouchableOpacity>*/}
-                {/*</LinearGradient>*/}
             </View>
         </ImageBackground>
     )

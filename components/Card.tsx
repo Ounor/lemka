@@ -10,7 +10,8 @@ interface Props {
   content: string
   addToWish: () => void
   handleNavigate: () => void
-  isInWish?: number
+  isInWish?: number,
+    image: string
 }
 
 const CardLil = ({
@@ -19,13 +20,14 @@ const CardLil = ({
   content,
   addToWish,
   isInWish,
+  image,
   handleNavigate,
 }: Props) => {
   return (
     <Card
       key={id}
       row
-      height={120}
+      height={150}
       style={{ backgroundColor: 'rgba(255,255,255,0.82)', marginBottom: 8 }}
       useNative
       activeOpacity={1}
@@ -35,7 +37,7 @@ const CardLil = ({
     >
       <TouchableOpacity onPress={handleNavigate}>
         <Card.Section
-          imageSource={{ uri: 'https://picsum.photos/150' }}
+          imageSource={{ uri: image || '' }}
           imageStyle={{ width: 90, height: '100%' }}
         />
       </TouchableOpacity>
@@ -43,7 +45,7 @@ const CardLil = ({
       <TouchableOpacity
         onPress={handleNavigate}
         style={{
-          paddingTop: 16,
+          paddingTop: 6,
           paddingRight: 40,
           padding: 8,
           paddingLeft: 12,

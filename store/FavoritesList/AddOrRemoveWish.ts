@@ -13,6 +13,7 @@ export default {
       id: payload.id,
       content: payload.content,
       title: payload.title,
+      imageUri: payload.imageUri,
     }
     const index = find(state.list, ['id', payload.id])
     if (!index) {

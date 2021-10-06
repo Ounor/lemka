@@ -5,20 +5,21 @@ import {
   CategoryContainer,
   ArticleContainer,
 } from '../screens'
-import { TouchableOpacity } from 'react-native-ui-lib'
-import { Image } from 'react-native'
+import {Image, Pressable} from 'react-native'
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {ReactReduxContext} from "react-redux";
+import {FontAwesome} from "@expo/vector-icons";
+import Colors from "../constants/Colors";
 
 const Stack = createStackNavigator()
 
 
 const CatalogNavigator = ({route: {params}}) => {
   return (
-    <Stack.Navigator initialRouteName="Catalog">
+    <Stack.Navigator>
         <Stack.Screen
-            options={() => ({
+            options={({navigation}) => ({
                 headerBackTitleVisible: false,
                 headerLeftContainerStyle: { marginLeft: 8 },
                 headerTintColor: 'white',
@@ -33,12 +34,13 @@ const CatalogNavigator = ({route: {params}}) => {
                 ),
                 // headerStyle: { paddingHorizontal: 16 },
                 headerTitleStyle: { color: '#fff' },
+
             })}
             name="Catalog"
             component={CatalogContainer}
         />
       <Stack.Screen
-        options={() => ({
+        options={({navigation}) => ({
           headerBackTitleVisible: false,
           headerLeftContainerStyle: { marginLeft: 8 },
           headerTintColor: 'white',
@@ -51,6 +53,20 @@ const CatalogNavigator = ({route: {params}}) => {
               end={{ x: 1, y: 0 }}
             />
           ),
+            headerRight: () => (
+                <Pressable
+                    onPress={() => navigation.navigate('Modal')}
+                    style={({ pressed }) => ({
+                        opacity: pressed ? 0.5 : 1,
+                    })}>
+                    <FontAwesome
+                        name="cog"
+                        color={'white'}
+                        size={25}
+                        style={{ marginRight: 15 }}
+                    />
+                </Pressable>
+            ),
           // headerStyle: { paddingHorizontal: 16 },
           headerTitleStyle: { color: '#fff' },
         })}

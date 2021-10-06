@@ -11,5 +11,6 @@ export interface IFavoritesList {
 export interface IFavoriteItem {
   id: number
   content: string
-  title: string
+  title: string,
+  imageUri: string
 }
