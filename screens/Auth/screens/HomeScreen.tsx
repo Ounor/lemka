@@ -12,10 +12,6 @@ type Props = {
   navigation: Navigation
 }
 
-const appleSignIn = (result: any): any => {
-  console.log('Resssult', result)
-}
-
 const HomeScreen = ({ navigation }: Props) => {
   return (
     <Background>

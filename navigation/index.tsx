@@ -42,9 +42,20 @@ function RootNavigator() {
         <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
             <Stack.Group screenOptions={{presentation: 'modal'}}>
-                <Stack.Screen name="Modal" options={{title: 'Фильтры'}} component={ModalScreen}/>
-                <Stack.Screen name="AddChild" options={{title: 'Добавить ребенка'}} component={NewChildScreen}/>
-                <Stack.Screen name="RemoveChild" options={{title: 'Редактировать список'}} component={ListChildScreen}/>
+                <Stack.Screen name="Modal" options={{
+                    title: 'Фильтры',
+                    headerTransparent: true,
+                    headerTitleStyle: {color: '#fff'},
+
+                }} component={ModalScreen}/>
+                <Stack.Screen name="AddChild" options={{
+                    headerTransparent: true,
+                    headerTitleStyle: {color: '#fff'}, title: 'Добавить ребенка'
+                }} component={NewChildScreen}/>
+                <Stack.Screen name="RemoveChild" options={{
+                    headerTransparent: true,
+                    headerTitleStyle: {color: '#fff'}, title: 'Редактировать список'
+                }} component={ListChildScreen}/>
             </Stack.Group>
         </Stack.Navigator>
     );
@@ -66,7 +77,7 @@ function BottomTabNavigator() {
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'rgba(255,255,255,0.65)',
                 tabBarStyle: {
-                    backgroundColor: '#6BB3A7',
+                    backgroundColor: '#005A3C',
                 }
             }}>
             <BottomTab.Screen

@@ -4,22 +4,26 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import styles from './styles'
 
 import { Paragraph } from 'react-native-paper'
+import { Dimensions } from 'react-native'
 
 const ArticleContainer = ({route}) => {
   const navigation = useNavigation()
   useEffect(() => {
     navigation.setOptions({ title: route.params.title })
   })
-  // console.log(route.params)
+
+
+  const windowWidth = Dimensions.get('window').width;
+
   return (
       <ImageBackground style={{width: '100%', height: '100%'}}
                        source={require('../../assets/images/gameBg.png')}>
     <ScrollView style={styles.catalogContainer}>
-      {route.params.imageUri && <View style={{borderRadius: 30, overflow: 'hidden', marginBottom: 16,}}>
-        <Image style={{width: '100%', height: 300}} source={{uri: route.params.imageUri || ''}} />
+      {route.params.imageUri && <View style={{borderRadius: 20, overflow: 'hidden', marginBottom: 16,}}>
+        <Image style={{width: windowWidth, height: windowWidth * .6}} resizeMode={"cover"} source={{uri: route.params.imageUri || ''}} />
       </View> }
 
-      <Paragraph style={{fontSize: 16}}>{route.params.content}</Paragraph>
+      <Paragraph style={{fontSize: 16, color: '#232323', fontWeight: 'bold'}}>{route.params.content}</Paragraph>
     </ScrollView>
       </ImageBackground>
 

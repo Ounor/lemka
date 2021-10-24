@@ -5,16 +5,19 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   catalogTitle: {
-    fontSize: 16,
+    fontSize: 18,
+    color: 'white',
     textAlign: 'center'
   },
   columnWrapper: {
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingBottom: 8,
   },
   catalogContainer: {
+
     // backgroundColor: '#f1f1f1',
+    marginHorizontal: 16,
     paddingVertical: 16,
   },
   catalogItemContainer: {
@@ -27,6 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   btnContainer: {
+    backgroundColor: '#005A3C',
     padding: 16,
   },
   btnContainerSmall: { padding: 8 },

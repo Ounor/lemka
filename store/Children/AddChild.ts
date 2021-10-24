@@ -30,7 +30,6 @@ export const childrenSlice = createSlice({
     },
     removeChild: (state, action) => {
       const newState = remove(state.list, ['birthDay', action.payload.birthDay])
-      console.log(state.list.length, newState.length)
       state.list
     },
 

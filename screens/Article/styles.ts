@@ -9,8 +9,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   catalogContainer: {
+    backgroundColor: 'rgba(255,255,255,0.63)',
+    marginTop: 90,
     width: '100%',
-    backgroundColor: 'rgba(241,241,241,0.81)',
     padding: 16,
   },
   catalogItemContainer: {

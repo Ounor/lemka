@@ -17,7 +17,7 @@ const Settings = () => {
     return (
         <ImageBackground style={{width: '100%', height: '100%'}}
                          source={require('../../assets/images/searchBg.png')}>
-            <List.Section style={{backgroundColor: 'rgba(194,194,194,0.78)', margin: 16, borderRadius: 20}}>
+            <List.Section style={{backgroundColor: 'rgba(194,194,194,0.78)', margin: 16, borderRadius: 20, marginTop: 90}}>
                 <List.Subheader>Основное</List.Subheader>
                 <List.Item
                     onPress={logOut}

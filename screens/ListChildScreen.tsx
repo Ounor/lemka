@@ -12,25 +12,13 @@ import {
 } from 'react-native';
 import {removeChild} from '../store/Children/AddChild'
 import {Text, View} from '../components/Themed';
-import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import {
-    BorderRadiuses,
     Button,
-    Colors,
-    Picker,
-    SegmentedControl,
-    KeyboardAwareScrollView,
-    TextField,
-    DateTimePicker,
     ListItem
 } from 'react-native-ui-lib';
 
-import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Formik} from 'formik'
 import {useNavigation} from "@react-navigation/native";
-import map from "lodash/map";
-import {IFavoritesList} from "../store/FavoritesList";
 
 export default function ListChildScreen() {
 
@@ -46,23 +34,22 @@ export default function ListChildScreen() {
         dispatch(removeChild(filter))
     }
 
-    const renderRow = (item, index) => <ListItem
-        // @ts-expect-error
-        style={{flex: 1, flexDirection: 'row'}}
-        activeOpacity={0.3}
-        height={77.5}
-        onPress={() => setFilter(item)}
+    const renderRow = (item, index) => <View
+        style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent'}}
     >
-        <Text grey10 text70 style={{margin: 10}} numberOfLines={1}>
-            {item.name} {item.birthDay}
+
+        <Text grey10 text70 style={{marginVertical: 30, fontSize: 16}} numberOfLines={1}>
+           Имя - {item.name}:  {item.age} лет
         </Text>
-    </ListItem>
+        <Button backgroundColor={'#005A3C'} onPress={() => setFilter(item)} marginV-15 label="Удалить"/>
+
+    </View>
     return (
         <ImageBackground style={styles.container}
                          source={require('../assets/images/filterBg.png')}>
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'}/>
                 <FlatList
-                    style={{backgroundColor: 'rgba(194,194,194,0)'}}
+                    style={{backgroundColor: 'rgba(194,194,194,0)', marginTop: 60, marginHorizontal: 16}}
                     data={childList}
                     contentContainerStyle={{backgroundColor: 'transparent'}}
                     renderItem={({item, index}) => renderRow(item, index)}
