@@ -1,20 +1,11 @@
 import {StatusBar} from 'expo-status-bar';
 import * as React from 'react';
-import {
-    ImageBackground,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    TextInput,
-    TouchableWithoutFeedback
-} from 'react-native';
+import {useEffect, useState} from 'react';
+import {ImageBackground, Platform, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import SetFilter from '../store/Filters/SetFilter'
 import {Text, View} from '../components/Themed';
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
-import {BorderRadiuses, Button, Colors, Picker, SegmentedControl, KeyboardAwareScrollView} from 'react-native-ui-lib';
-
-import {useEffect, useRef, useState} from "react";
+import {BorderRadiuses, Button, KeyboardAwareScrollView, SegmentedControl} from 'react-native-ui-lib';
 import {useDispatch, useSelector} from "react-redux";
 import {Formik} from 'formik'
 import {useNavigation} from "@react-navigation/native";
@@ -25,6 +16,10 @@ import sortBy from "lodash/sortBy";
 import SelectBox from 'react-native-multi-selectbox'
 
 export default function ModalScreen() {
+
+    const filters = useSelector(
+        (state: { filter: { filter } }) => state?.filter?.filter || [],
+    )
 
     const childList = useSelector(
         (state: { childrenList }) =>
@@ -84,11 +79,10 @@ export default function ModalScreen() {
     let childArrAge = [1, 10]
 
 
-
-     if (childList.length > 1) {
-         sortBy(childList, ['name', 'age'])
-         childArrAge = [childList[0].age, childList[childList.length -1].age]
-     }
+    if (childList.length > 1) {
+        sortBy(childList, ['name', 'age'])
+        childArrAge = [childList[0].age, childList[childList.length - 1].age]
+    }
 
     const childAgeDef =
         (childList.length === 1)
@@ -116,11 +110,17 @@ export default function ModalScreen() {
                     }}
                     onSubmit={values => {
                         setFilter(values)
-                        navigation.goBack()
+                        // navigation.goBack()
+                        navigation.navigate({
+                            name: 'Catalog',
+                            params: {id: [], title: 'Результаты', apply: true},
+                        });
+                        // navigation.navigate('Category', {id :[], title: 'Результаты'})
                     }}
                     onReset={() => {
                         setFilter({})
                         navigation.goBack()
+                        // navigation.navigate('Category')
                     }}
                 >
                     {({setFieldValue, handleSubmit, resetForm, values}) => (
@@ -215,7 +215,7 @@ export default function ModalScreen() {
                                     minMarkerOverlapDistance={40}
                                 />
                                 <MultiSlider
-                                    values={[childList.length?childList.length : 2 ]}
+                                    values={[childList.length ? childList.length : 2]}
                                     markerStyle={{backgroundColor: '#005A3C'}}
                                     trackStyle={{backgroundColor: 'white', borderColor: '#005A3C'}}
                                     selectedStyle={{backgroundColor: '#005A3C'}}

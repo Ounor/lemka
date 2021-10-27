@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   catalogTitle: {
-    fontSize: 18,
+    fontSize: 12,
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'left',
+    width: '50%'
   },
   columnWrapper: {
     // justifyContent: 'space-between',

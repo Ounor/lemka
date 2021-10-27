@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Dimensions, Image, Text, TouchableOpacity, View} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
@@ -6,6 +6,7 @@ import {Card} from 'react-native-ui-lib'
 
 interface Props {
     id: number | string
+    answer: string
     title: string
     content: string
     addToWish: () => void
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const CardLil = ({
-                     id,
+                     answer,
                      title,
                      content,
                      addToWish,
@@ -23,6 +24,12 @@ const CardLil = ({
                      image,
                      handleNavigate,
                  }: Props) => {
+
+    const [isShown, setShown] = useState(false)
+
+    const handleShow = () => {
+        setShown(!isShown)
+    }
     return (
 
 
@@ -53,11 +60,16 @@ const CardLil = ({
                         fontWeight: 'bold',
                         marginBottom: 12
                     }}>{title}</Text>
-                    <Text style={{fontSize: 14, lineHeight: 24, width: '100%'}} numberOfLines={4}>{content}</Text>
+                    <Text style={{fontSize: 14, lineHeight: 24, width: '100%'}} numberOfLines={answer? undefined: 4}>{content}</Text>
                 </View>
             </View>
-            <View style={{flexDirection: "column", alignItems: 'flex-end', width: '100%'}}>
-                <TouchableOpacity onPress={handleNavigate}
+            <View style={{flexDirection: "row", justifyContent: 'space-between', width: '100%'}}>
+                <View style={{width: '60%',}}>
+                    {isShown ? <Text style={{fontSize: 18, fontWeight: "bold", marginVertical: 20}}>
+                        {answer}
+                    </Text> : null}
+                </View>
+                <TouchableOpacity onPress={answer ? handleShow : handleNavigate}
                 >
                     <LinearGradient
                         colors={['#BC1E1E', '#590707']}
@@ -65,13 +77,12 @@ const CardLil = ({
                         start={{x: 1, y: 0.9}}
                         end={{x: 1, y: 0}}
                     >
-                        <Text style={{padding: 10, paddingHorizontal: 16, color: "white"}}>Подробнее</Text>
+                        <Text style={{padding: 10, paddingHorizontal: 16, color: "white"}}>{answer ? isShown ? 'Спрятать' : "Показать" : 'Подробнее'}</Text>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
 
-
-            <TouchableOpacity
+            {!answer ?  <TouchableOpacity
                 onPress={() => addToWish()}
                 hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}
                 style={{
@@ -85,20 +96,7 @@ const CardLil = ({
                 }}
             >
                 <FontAwesome name="heart" size={20} color={isInWish ? 'red' : '#c2c2c2'}/>
-            </TouchableOpacity>
-            {/*<LinearGradient*/}
-            {/*    colors={['#ffffff', 'rgba(255,255,255,0)']}*/}
-            {/*    style={{*/}
-            {/*        flex: 1,*/}
-            {/*        position: 'absolute',*/}
-            {/*        bottom: 0,*/}
-            {/*        left: 0,*/}
-            {/*        right: 0,*/}
-            {/*        height: 80,*/}
-            {/*    }}*/}
-            {/*    start={{x: 1, y: 0.9}}*/}
-            {/*    end={{x: 1, y: 0}}*/}
-            {/*/>*/}
+            </TouchableOpacity> : null}
         </TouchableOpacity>
     )
 }

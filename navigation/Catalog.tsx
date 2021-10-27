@@ -8,22 +8,15 @@ import {
 import {Image, Pressable, TouchableOpacity, View, Text} from 'react-native'
 
 import {LinearGradient} from 'expo-linear-gradient';
-import {ReactReduxContext, useDispatch} from "react-redux";
 import {FontAwesome} from "@expo/vector-icons";
-import Colors from "../constants/Colors";
-import AddToWish from "../store/FavoritesList/AddOrRemoveWish";
-import {HeaderHeightContext} from '@react-navigation/elements';
 
 const Stack = createStackNavigator()
-const headerHeight = HeaderHeightContext
 
 const CatalogNavigator = () => {
-
     return (
         <Stack.Navigator>
             <Stack.Screen
-
-                options={() => ({
+                options={({navigation}) => ({
                     headerTransparent: true,
                     headerLeftContainerStyle: {marginLeft: 8},
                     title: 'Категории игр',
@@ -37,7 +30,7 @@ const CatalogNavigator = () => {
                             style={{
                                 display: 'flex',
                                 // flexDirection: 'row',
-                                height: 180,
+                                height: 160,
                                 alignContent: 'center',
                                 alignItems: 'center',
                                 justifyContent: 'space-between',
@@ -45,9 +38,26 @@ const CatalogNavigator = () => {
                                 paddingVertical: '10%'
                             }}>
                             <Image resizeMode={'contain'} style={{width: 120, height: 50}} source={require('../assets/images/appLogo.png')}/>
-                            <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold', marginTop: 30}}>Категории игр
+                           <TouchableOpacity
+                               onPress={() => navigation.navigate('Modal')}
+                               style={{
+                               backgroundColor: 'white',
+                               borderRadius: 30,
+                               width: '90%',
+                               height: 40,
+                               marginTop: 10,
+                               marginHorizontal: 12,
+                               paddingHorizontal: 16,
+                               paddingVertical: 12,
+                               flexDirection: 'row',
+                               justifyContent: "flex-start",
+                           }}>
+                               <FontAwesome style={{marginRight: 32}} name="sliders" size={20} color={'#075131'}/>
+                                <Text style={{fontSize: 12}}>Подобрать игру по параметрам</Text>
+                           </TouchableOpacity>
+                            {/*<Text style={{color: 'white', fontSize: 24, fontWeight: 'bold', marginTop: 12}}>Категории игр*/}
 
-                            </Text>
+                            {/*</Text>*/}
 
                         </LinearGradient>
                     ),

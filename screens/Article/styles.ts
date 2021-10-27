@@ -9,9 +9,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   catalogContainer: {
-    backgroundColor: 'rgba(255,255,255,0.63)',
-    marginTop: 90,
-    width: '100%',
+    marginHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.87)',
+    marginBottom: 16,
     padding: 16,
   },
   catalogItemContainer: {
