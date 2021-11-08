@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {Dimensions, Image, Text, TouchableOpacity, View} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
-import {Card} from 'react-native-ui-lib'
 
 interface Props {
     id: number | string
@@ -34,7 +33,9 @@ const CardLil = ({
 
 
         <TouchableOpacity
-            disabled
+            disabled={Boolean(answer)}
+            activeOpacity={.95}
+            onPress={answer ? null : handleNavigate}
             style={{
                 justifyContent: 'space-between',
                 paddingTop: 14,
@@ -60,7 +61,8 @@ const CardLil = ({
                         fontWeight: 'bold',
                         marginBottom: 12
                     }}>{title}</Text>
-                    <Text style={{fontSize: 14, lineHeight: 24, width: '100%'}} numberOfLines={answer? undefined: 4}>{content}</Text>
+                    <Text style={{fontSize: 14, lineHeight: 24, width: '100%'}}
+                          numberOfLines={answer ? undefined : 4}>{content}</Text>
                 </View>
             </View>
             <View style={{flexDirection: "row", justifyContent: 'space-between', width: '100%'}}>
@@ -69,7 +71,8 @@ const CardLil = ({
                         {answer}
                     </Text> : null}
                 </View>
-                <TouchableOpacity onPress={answer ? handleShow : handleNavigate}
+                <TouchableOpacity disabled={!Boolean(answer)}
+                                  onPress={answer ? handleShow : handleNavigate}
                 >
                     <LinearGradient
                         colors={['#BC1E1E', '#590707']}
@@ -77,12 +80,16 @@ const CardLil = ({
                         start={{x: 1, y: 0.9}}
                         end={{x: 1, y: 0}}
                     >
-                        <Text style={{padding: 10, paddingHorizontal: 16, color: "white"}}>{answer ? isShown ? 'Спрятать' : "Показать" : 'Подробнее'}</Text>
+                        <Text style={{
+                            padding: 10,
+                            paddingHorizontal: 16,
+                            color: "white"
+                        }}>{answer ? isShown ? 'Спрятать' : "Показать" : 'Подробнее'}</Text>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
 
-            {!answer ?  <TouchableOpacity
+            {!answer ? <TouchableOpacity
                 onPress={() => addToWish()}
                 hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}
                 style={{

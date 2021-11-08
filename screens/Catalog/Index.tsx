@@ -6,6 +6,7 @@ import {LinearGradient} from 'expo-linear-gradient';
 import useAxios from 'axios-hooks';
 import map from 'lodash/map'
 import LottieView from 'lottie-react-native';
+import * as Analytics from 'expo-firebase-analytics';
 
 //
 const CatalogContainer = () => {
@@ -33,12 +34,18 @@ const CatalogContainer = () => {
     useEffect(() => {
         // animation.current.play();
 
+        Analytics.logEvent('test', {
+            contentType: 'text',
+            itemId: 'itemId!',
+            method: 'method'
+        });
+
         refetch().then(e => {
             const newArr: ((prevState: never[]) => never[]) | { id: any; title: any; }[] = []
             map(e.data, (e: string, index: number) => {
                 newArr.push({id: e.cat_ID, title: e.cat_name, slug: e.slug, tax_Image: e.tax_Image})
             })
-            newArr.push({id: '', title: 'Все игры', slug: 'allGames', tax_Image: 'allGames'})
+            newArr.push({id: '', title: 'Все игры', slug: 'allGames', tax_Image: 'https://lemka.fun/wp-content/uploads/category_all.png'})
             setCategoryFilter(newArr)
         })
     }, [])
@@ -72,7 +79,7 @@ const CatalogContainer = () => {
                         alignContent: "center",
                         alignItems: 'center'
                     }]}
-                    colors={['#042B1A', '#075935']}
+                    colors={id === '' || id === 82 ? ['#BC1E1E', '#590707'] : ['#042B1A', '#075935']}
                     start={{x: 0, y: 0}}
                     end={{x: 0, y: 1}}
                 >

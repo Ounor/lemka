@@ -28,7 +28,7 @@ export default function NewChildScreen() {
     return (
         <ImageBackground style={styles.container}
                          source={require('../assets/images/filterBg.png')}>
-            <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'}/>
+            <StatusBar style={'auto'}/>
             <KeyboardAwareScrollView style={{
                 paddingHorizontal: 16,
                 paddingBottom: 22,
@@ -78,12 +78,13 @@ export default function NewChildScreen() {
                                 />
 
                                 <DateTimePicker
+                                    themeVariant={'light'}
                                     hideUnderline={true}
                                     locale={'ru'}
                                     onChange={value => {
-                                        console.log(value)
                                         setFieldValue('birthDay', value.toString())
                                     }}
+
                                     containerStyle={{marginTop: 32, paddingTop: 22, paddingHorizontal: 12}}
                                     title={'Дата рождения'}
                                     placeholderTextColor={'rgba(255,255,255,0.77)'}

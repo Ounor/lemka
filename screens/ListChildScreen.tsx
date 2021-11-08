@@ -47,7 +47,7 @@ export default function ListChildScreen() {
     return (
         <ImageBackground style={styles.container}
                          source={require('../assets/images/filterBg.png')}>
-            <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'}/>
+            <StatusBar style={'auto'}/>
                 <FlatList
                     style={{backgroundColor: 'rgba(194,194,194,0)', marginTop: 60, marginHorizontal: 16}}
                     data={childList}

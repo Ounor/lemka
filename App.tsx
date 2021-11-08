@@ -7,10 +7,12 @@ import Navigation from './navigation';
 import { store, persistor } from './store'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import {Provider} from "react-redux";
+import * as Analytics from "expo-firebase-analytics";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+Analytics.setDebugModeEnabled(true)
 
   if (!isLoadingComplete) {
     return null;

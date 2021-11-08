@@ -191,7 +191,7 @@ export default function ModalScreen() {
                                     segments={filtersData.timeOfYear}
                                 />
                                 <MultiSlider
-                                    values={[3]}
+                                    values={[1]}
                                     containerStyle={{marginTop: 6}}
                                     markerStyle={{backgroundColor: '#005A3C'}}
                                     trackStyle={{backgroundColor: 'white', borderColor: '#005A3C'}}
@@ -249,6 +249,7 @@ export default function ModalScreen() {
                                                 showsHorizontalScrollIndicator: false,
                                             }
                                         }
+                                        optionsLabelStyle={{color: 'white'}}
                                         multiOptionsLabelStyle={{fontSize: 14}}
                                         arrowIconColor={'#005A3C'}
                                         searchIconColor={'#005A3C'}

@@ -19,7 +19,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +29,17 @@
       "package": "com.korgufxicmoz2jirfe.lemka"
     },
     "web": {
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyBii_HUNJDwzo3nuBbWL2la_9kOsEaCGjQ",
+          "authDomain": "lemka-86162.firebaseapp.com",
+          "projectId": "lemka-86162",
+          "storageBucket": "lemka-86162.appspot.com",
+          "messagingSenderId": "46033576175",
+          "appId": "1:46033576175:web:a5d04c4fdb47b7a1043b1a",
+          "measurementId": "G-Q8S56WWPRZ"
+        }
+      },
       "favicon": "./assets/images/favicon.png"
     }
   }
